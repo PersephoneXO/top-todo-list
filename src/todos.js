@@ -1,7 +1,7 @@
 //module for creating and manipulating todo objects
 
 //difference in days from date-fns
-const { differenceInDays,format,isToday, lightFormat } = require("date-fns");
+const { differenceInDays,format,isToday, lightFormat, isEqual } = require("date-fns");
 
 //create a todo object
 const createTodo=(title,description,deadline,priority,projectName)=>{
@@ -12,8 +12,8 @@ const createTodo=(title,description,deadline,priority,projectName)=>{
 };
 
 //create a project object
-const createProject=(title,allTodos=[],todosByDate=[])=>{
-    return {title,allTodos,todosByDate};
+const createProject=(title,allTodos=[],sortedTodos=[])=>{
+    return {title,allTodos,sortedTodos};
 };
 
 //toggle checkmark
@@ -26,35 +26,36 @@ function toggleCheck(todo){
 function isDeadlineToday(todo){
     return isToday(todo.deadline);
 };
-/*
-//sort todos by priority
-function sortByPriority(project){
-    let highPriority=[];
-    let mediumPriority=[];
-    let lowPriority=[];
 
-    for(let task of project.allTodos){
-        let currentPriority=task.priority;
-        switch(currentPriority){
-            case 'high':
-                highPriority.push(task);
-                break;
-            case 'medium':
-                mediumPriority.push(task);
-                break;
-            case 'low':
-                lowPriority.push(task);
-                break;
+
+//sort by priority after being sorted by deadline
+function sortByPriority(sortedDateArr,project){
+
+    for (let day of sortedDateArr){
+        let highPriority=[];
+        let mediumPriority=[];
+        let lowPriority=[];
+        for(let todo of day){
+            let currentPriority=todo.priority;
+            switch(currentPriority){
+                case 'high':
+                    highPriority.push(todo);
+                    break;
+                case 'medium':
+                    mediumPriority.push(todo);
+                    break;
+                case 'low':
+                    lowPriority.push(todo);
+                    break;
+            }
         }
+        let highToMedium=highPriority.concat(mediumPriority);
+        let highToLow=highToMedium.concat(lowPriority);
+        project.sortedTodos.push(highToLow);
     }
-
-    project..splice(0,project.allTodos.length);
-    project.todos.push(highPriority);
-    project.todos.push(mediumPriority);
-    project.todos.push(lowPriority);
     return project;
 };
-*/
+
 //sort by deadline
 function sortByDate(project){
     let currentTodos=project.allTodos;
@@ -63,19 +64,43 @@ function sortByDate(project){
         let dateB=new Date(b.deadline);
         return dateA-dateB;
     });
-    //project.todosByDate.push(currentTodos);
 
-    for()
+    let separatedDatesArr=[];
+    let checkTrigger=false;
+    for (let todo of currentTodos){
 
+        for(let i=0;i<separatedDatesArr.length;i++){
+            if(isEqual(separatedDatesArr[i][0].deadline,todo.deadline)){
+                separatedDatesArr[i].push(todo);
+                checkTrigger=true;
+                break;
+            }
+        }
+        if(checkTrigger==false){
+            separatedDatesArr.push([todo]);
+
+        }
+        if(checkTrigger==true){
+            checkTrigger=false;
+        }
+    }
+    return separatedDatesArr;
 };
 
+//sort todos by both deadline and priority
+function sortTodos(project){
+    let byDate=sortByDate(project);
+    sortByPriority(byDate,project);
+    return project;
+};
 
 
 let joe=createTodo('dentist','pull tooth',new Date(2024,0,4),'low');
 let billy=createTodo('doctor','medicine',new Date(2024,5,25),'high');
 let luke=createTodo('teacher','teach',new Date(2024,2,9),'medium');
-let project=createProject('test',[joe,billy,luke]);
+let henry=createTodo('agent','spy',new Date(2024,0,4),'high');
+let project=createProject('test',[joe,billy,luke,henry]);
 
 //console.log(project);
-sortByDate(project);
-console.log(project.todosByDate);
+sortTodos(project);
+console.log(project.sortedTodos);
