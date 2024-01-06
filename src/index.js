@@ -1,7 +1,5 @@
-//start using example for the date-fns library
-/*
-import { formatDistance, subDays } from "date-fns";
+//import css file
+import './styles.css';
 
-formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
-//=> "3 days ago"
-*/
+//import functions from external files
+import {createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject} from './todos';

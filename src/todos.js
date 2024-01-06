@@ -1,7 +1,7 @@
 //module for creating and manipulating todo objects
 
 //difference in days from date-fns
-const { differenceInDays,format,isToday, lightFormat, isEqual } = require("date-fns");
+const { isToday, lightFormat, isEqual } = require("date-fns");
 
 //create a todo object
 const createTodo=(title,description,deadline,priority,projectName)=>{
@@ -18,7 +18,7 @@ const createProject=(title,allTodos=[],sortedTodos=[])=>{
 
 //toggle checkmark
 function toggleCheck(todo){
-    todo.checkmark=true;
+    todo.checkmark=!todo.checkmark;
     return todo;
 };
 
@@ -89,12 +89,30 @@ function sortByDate(project){
 
 //sort todos by both deadline and priority
 function sortTodos(project){
+    project.sortedTodos=[];
     let byDate=sortByDate(project);
     sortByPriority(byDate,project);
     return project;
 };
 
+//change todo priority
+function changePriority(todo,newpriority){
+    todo.priority=newpriority;
+    return todo;
+}
 
+//add todo to a project
+function addTodoToProject(todo,chosenProject){
+    todo.projectName=chosenProject.title;
+    chosenProject.allTodos.push(todo);
+    sortTodos(chosenProject);
+    return chosenProject;
+}
+
+export{createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject};
+
+//test conditions
+/*
 let joe=createTodo('dentist','pull tooth',new Date(2024,0,4),'low');
 let billy=createTodo('doctor','medicine',new Date(2024,5,25),'high');
 let luke=createTodo('teacher','teach',new Date(2024,2,9),'medium');
@@ -104,3 +122,4 @@ let project=createProject('test',[joe,billy,luke,henry]);
 //console.log(project);
 sortTodos(project);
 console.log(project.sortedTodos);
+*/
