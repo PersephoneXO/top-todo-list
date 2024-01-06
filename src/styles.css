@@ -14,3 +14,7 @@ body{
 .content{
     height: 100vh;
 }
+
+#prev-icon, #next-icon{
+    height: 35px;
+}
