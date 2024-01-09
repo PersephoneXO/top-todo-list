@@ -115,6 +115,8 @@ const allTodos=createProject('All Todos');
 const allProjects=[];
 
 
+
+
 export{createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject,allProjects,allTodos};
 
 //test conditions

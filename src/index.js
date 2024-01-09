@@ -4,7 +4,7 @@
 //import functions from external files
 import {createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject,allProjects,allTodos} from './todos';
 import {createSidebar,addActiveClass,createHeader,createMainContainer} from './home-page';
-
+import { createProjectDialog } from './todos-dom';
 
 //DOM elements
 const contentContainer=document.querySelector('.content');
