@@ -103,10 +103,13 @@ const createMainContainer=()=>{
     let hpTodayHeader=createDom('div','hp-today-header');
     let hpTodayTitle=createDom('p','hp-container-titles');
     hpTodayTitle.textContent='Due Today';
+    let addTaskButton=createDom('button','create-task-button');
+    addTaskButton.textContent='Add Task';
 
     let hpTodayContent=createDom('div','hp-today-content');
 
     hpTodayHeader.appendChild(hpTodayTitle);
+    hpTodayHeader.appendChild(addTaskButton);
     hpTodayContainer.appendChild(hpTodayHeader);
     hpTodayContainer.appendChild(hpTodayContent);
 
@@ -115,10 +118,13 @@ const createMainContainer=()=>{
     let hpProjectHeader=createDom('div','hp-project-header');
     let hpProjectTitle=createDom('p','hp-container-titles');
     hpProjectTitle.textContent='Projects';
+    let addProjectButton=createDom('button','create-project-button');
+    addProjectButton.textContent='Add Project';
 
     let hpProjectContent=createDom('div','hp-project-content');
 
     hpProjectHeader.appendChild(hpProjectTitle);
+    hpProjectHeader.appendChild(addProjectButton);
     hpProjectContainer.appendChild(hpProjectHeader);
     hpProjectContainer.appendChild(hpProjectContent);
 

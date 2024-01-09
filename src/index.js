@@ -18,5 +18,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     addActiveClass('home');
     contentContainer.appendChild(createHeader());
     contentContainer.appendChild(createMainContainer());
-    return contentContainer;
+    contentContainer.appendChild(createProjectDialog());
+    //return contentContainer;
+
+    let openProjectModal=document.querySelector('.create-project-button');
+    let projectDialog=document.querySelector('#create-project-dialog');
+    //open project modal on button click
+    openProjectModal.addEventListener('click',(e)=>{
+        projectDialog.showModal();
+    })
 });

@@ -111,10 +111,7 @@ body{
 
 }
 
-.hp-today-header{
-    padding-inline: 50px;
-    padding-top: 10px;
-}
+
 
 .hp-project-container{
     background-color: #2f2f2f;
@@ -122,9 +119,25 @@ body{
     border-radius: 15px;
 }
 
-.hp-project-header{
+.hp-project-header, .hp-today-header{
     padding-inline: 50px;
     padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.create-project-button, .create-task-button{
+    font-family: 'Source Sans 3', sans-serif;
+    border: none;
+    background-color: #ffffff;
+    font-size: 1rem;
+    height: min-content;
+
+    padding: 10px 30px;
+    border-radius: 20px;
+
+
 }
 
 .hp-container-titles{
