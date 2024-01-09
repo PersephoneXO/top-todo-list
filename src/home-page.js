@@ -100,18 +100,26 @@ const createMainContainer=()=>{
 
     //create home page today container
     let hpTodayContainer=createDom('div','hp-today-container');
-    let hpTodayContent=createDom('div','hp-today-content');
+    let hpTodayHeader=createDom('div','hp-today-header');
     let hpTodayTitle=createDom('p','hp-container-titles');
     hpTodayTitle.textContent='Due Today';
-    hpTodayContent.appendChild(hpTodayTitle);
+
+    let hpTodayContent=createDom('div','hp-today-content');
+
+    hpTodayHeader.appendChild(hpTodayTitle);
+    hpTodayContainer.appendChild(hpTodayHeader);
     hpTodayContainer.appendChild(hpTodayContent);
 
     //create home page projects container
     let hpProjectContainer=createDom('div','hp-project-container');
-    let hpProjectContent=createDom('div','hp-project-content');
+    let hpProjectHeader=createDom('div','hp-project-header');
     let hpProjectTitle=createDom('p','hp-container-titles');
     hpProjectTitle.textContent='Projects';
-    hpProjectContent.appendChild(hpProjectTitle);
+
+    let hpProjectContent=createDom('div','hp-project-content');
+
+    hpProjectHeader.appendChild(hpProjectTitle);
+    hpProjectContainer.appendChild(hpProjectHeader);
     hpProjectContainer.appendChild(hpProjectContent);
 
     //append both containers to the home page main container
