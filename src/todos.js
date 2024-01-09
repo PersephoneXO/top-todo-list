@@ -109,7 +109,13 @@ function addTodoToProject(todo,chosenProject){
     return chosenProject;
 }
 
-export{createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject};
+
+//array that holds all projects and initializes the default project that contains every todo created
+const allTodos=createProject('All Todos');
+const allProjects=[];
+
+
+export{createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject,allProjects,allTodos};
 
 //test conditions
 /*
