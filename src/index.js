@@ -13,18 +13,19 @@ const contentContainer=document.querySelector('.content');
 
 //run functions to create home page on page load
 document.addEventListener('DOMContentLoaded',()=>{
-
     contentContainer.appendChild(createSidebar());
     addActiveClass('home');
     contentContainer.appendChild(createHeader());
     contentContainer.appendChild(createMainContainer());
     contentContainer.appendChild(createProjectDialog());
-    //return contentContainer;
+    return contentContainer;
+});
 
-    let openProjectModal=document.querySelector('.create-project-button');
-    let projectDialog=document.querySelector('#create-project-dialog');
-    //open project modal on button click
-    openProjectModal.addEventListener('click',(e)=>{
-        projectDialog.showModal();
-    })
+//open project modal on button click
+document.addEventListener('click',(e)=>{
+    const target=e.target.closest('.create-project-button');
+    if(target){
+        let dialog=document.querySelector('#create-project-dialog');
+        dialog.showModal();
+    }
 });
