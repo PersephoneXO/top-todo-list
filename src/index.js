@@ -4,7 +4,7 @@
 //import functions from external files
 import {createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject,allProjects,allTodos} from './todos';
 import {createSidebar,addActiveClass,createHeader,createMainContainer} from './home-page';
-import { createProjectDialog } from './todos-dom';
+import {createProjectDialog,createTaskDialog} from './todos-dom';
 
 //DOM elements
 const contentContainer=document.querySelector('.content');
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     contentContainer.appendChild(createHeader());
     contentContainer.appendChild(createMainContainer());
     contentContainer.appendChild(createProjectDialog());
+    contentContainer.appendChild(createTaskDialog());
     return contentContainer;
 });
 
@@ -26,6 +27,15 @@ document.addEventListener('click',(e)=>{
     const target=e.target.closest('.create-project-button');
     if(target){
         let dialog=document.querySelector('#create-project-dialog');
+        dialog.showModal();
+    }
+});
+
+//open task modal on button click
+document.addEventListener('click',(e)=>{
+    const target=e.target.closest('.create-task-button');
+    if(target){
+        let dialog=document.querySelector('#create-task-dialog');
         dialog.showModal();
     }
 });
