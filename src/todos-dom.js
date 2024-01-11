@@ -87,6 +87,7 @@ const createTaskDialog=()=>{
     submitButton.setAttribute('type','submit');
     submitButton.setAttribute('value','submit');
     submitButton.setAttribute('formmethod','post');
+    submitButton.id='submit-button-task';
     submitButton.textContent='Add Task';
     form.appendChild(submitButton);
     //append form to the input container
@@ -119,6 +120,7 @@ const createProjectDialog=()=>{
     submitButton.setAttribute('type','submit');
     submitButton.setAttribute('value','submit');
     submitButton.setAttribute('formmethod','post');
+    submitButton.id='submit-button-project';
     submitButton.textContent='Add Project';
     form.appendChild(submitButton);
     //append form to the input container

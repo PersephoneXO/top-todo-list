@@ -2,13 +2,17 @@
 //import './styles.css';
 
 //import functions from external files
-import {createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject,allProjects,allTodos} from './todos';
+import {createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject} from './todos';
 import {createSidebar,addActiveClass,createHeader,createMainContainer} from './home-page';
 import {createProjectDialog,createTaskDialog} from './todos-dom';
 
 //DOM elements
 const contentContainer=document.querySelector('.content');
 
+
+//array that holds all projects and initializes the default project that contains every todo created
+const allTodos=createProject('All Todos');
+const allProjects=[];
 
 
 //run functions to create home page on page load
@@ -39,3 +43,25 @@ document.addEventListener('click',(e)=>{
         dialog.showModal();
     }
 });
+
+/*
+//add project and successfull submission
+document.addEventListener('click',(e)=>{
+    const target=e.target.closest('#submit-button-project');
+    if(target){
+        e.preventDefault();
+        let projectName=document.querySelector('#project-title').value;
+
+        if(projectName.length<1){
+            alert('Please fill out all fields');
+        }
+        else{
+            allProjects.push(createProject(projectName));
+            console.log(allProjects);
+        }
+
+    }
+});
+
+console.log(allProjects);
+*/
