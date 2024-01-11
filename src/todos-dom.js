@@ -49,6 +49,7 @@ const createTaskDialog=()=>{
     //create form
     let form=createDom('form','form-container');
     form.setAttribute('method','post');
+    form.id='task-form';
     //create cancel button
     let cancelButton=createDom('button','cancel-button');
     cancelButton.setAttribute('formmethod','dialog');
@@ -107,6 +108,7 @@ const createProjectDialog=()=>{
     //create form
     let form=createDom('form','form-container');
     form.setAttribute('method','post');
+    form.id='project-form';
     //create cancel button
     let cancelButton=createDom('button','cancel-button');
     cancelButton.setAttribute('formmethod','dialog');

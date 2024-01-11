@@ -11,8 +11,8 @@ const contentContainer=document.querySelector('.content');
 
 
 //array that holds all projects and initializes the default project that contains every todo created
-const allTodos=createProject('All Todos');
-const allProjects=[];
+let allTodos=createProject('All Todos');
+let allProjects=[];
 
 
 //run functions to create home page on page load
@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     contentContainer.appendChild(createTaskDialog());
     return contentContainer;
 });
+
+//close project modal on button click
+document.addEventListener('click',(e)=>{
+    const target=e.target.closest('.cancel-button');
+    if(target){
+        let dialog=document.querySelector('#create-project-dialog');
+        dialog.close();
+    }
+})
 
 //open project modal on button click
 document.addEventListener('click',(e)=>{
@@ -44,24 +53,21 @@ document.addEventListener('click',(e)=>{
     }
 });
 
-/*
-//add project and successfull submission
+//successfully creates and adds project
 document.addEventListener('click',(e)=>{
     const target=e.target.closest('#submit-button-project');
     if(target){
-        e.preventDefault();
-        let projectName=document.querySelector('#project-title').value;
-
-        if(projectName.length<1){
-            alert('Please fill out all fields');
-        }
-        else{
-            allProjects.push(createProject(projectName));
-            console.log(allProjects);
-        }
-
+            e.preventDefault();
+            let dialog=document.querySelector('#create-project-dialog');
+            let form=document.querySelector('#project-form');
+            let projectName=document.querySelector('#project-title').value;
+            if(projectName.length<1){
+                alert('Please fill out all fields');
+            }else{
+                allProjects.push(createProject(projectName));
+                dialog.close();
+                form.reset();
+                console.log(allProjects)
+            }
     }
 });
-
-console.log(allProjects);
-*/
