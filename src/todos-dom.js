@@ -83,7 +83,7 @@ const createTaskDialog=()=>{
     radioContainer.appendChild(createRadioButtons('medium-container','priority-choice','medium','Medium'));
     radioContainer.appendChild(createRadioButtons('low-container','priority-choice','low','Low'));
     form.appendChild(radioContainer);
-    //submit form and create project button
+    //submit form and create todo button
     let submitButton=createDom('button','submit-button');
     submitButton.setAttribute('type','submit');
     submitButton.setAttribute('value','submit');
