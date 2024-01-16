@@ -49,7 +49,44 @@
                     <label for="task-title">Task Name: </label>
                     <input type="text" class="single-line-input" name="task-title" id="task-title">
                 </div>
+                <div class="task-description-input">
+                    <label for="task-description">Task Description: </label>
+                    <input type="text" class="single-line-input" name="task-description" id="task-description">
+                </div>
+                <div class="task-deadline-input">
+                    <label for="deadline">Deadline: </label>
+                    <input type="date" class="deadline-input" name="deadline" id="deadline" value="2024-01-10">
+                </div>
+                <div class="radio-container">
+                    <p class="radio-label">Task Priority: </p>
+                    <div class="high-container">
+                        <label for="high">High</label>
+                        <input type="radio" class="priority-choice" name="high" id="high">
+                    </div>
+                    <div class="medium-container">
+                        <label for="medium">Medium</label>
+                        <input type="radio" class="priority-choice" name="medium" id="medium">
+                    </div>
+                    <div class="low-container">
+                        <label for="low">Low</label>
+                        <input type="radio" class="priority-choice" name="low" id="low">
+                    </div>
+                </div>
+                <button class="submit-button" type="submit" value="submit" formmethod="post" id="submit-button-task">Add Task</button>
+            </form>
+        </div>
+    </dialog>
 
+    <!--Create Project Dialog-->
+    <dialog id="create-project-dialog">
+        <div class="input-container">
+            <form method="post" id="project-form">
+                <button class="cancel-button" formmethod="dialog" formnovalidate>x</button>
+                <div class="project-title-input">
+                    <label for="project-title">Project Name: </label>
+                    <input type="text" class="single-line-input" name="project-title" id="project-title">
+                </div>
+                <button class="submit-button" type="submit" value="submit" formmethod="post" id="submit-button-project">Add Project: </button>
             </form>
         </div>
     </dialog>
