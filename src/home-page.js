@@ -1,4 +1,5 @@
 //function to create sidebar
+/*
 const createSidebar=()=>{
     let sidebarContainer=document.createElement('div');
     sidebarContainer.classList.add('sidebar');
@@ -39,7 +40,7 @@ function createSidebarTabs(page,id,svgCode){
     sidebarTab.appendChild(sidebarTitle);
 
     return sidebarTab;
-}
+}*/
 
 
 //function to add active class to the current tab and remove active class from other tabs if it exists
@@ -67,10 +68,7 @@ function addActiveClass(currentTab){
 }
 
 //function to create the header
-const createHeader=()=>{
-    let headerContainer=document.createElement('div');
-    headerContainer.classList.add('header-container');
-
+const hpHeaderContent=()=>{
     //create welcome container
     let welcomeContainer=document.createElement('div');
     welcomeContainer.classList.add('welcome-container');
@@ -87,13 +85,13 @@ const createHeader=()=>{
     welcomeContainer.appendChild(headerSubtitle);
 
     //append welcome container to header container
-    headerContainer.appendChild(welcomeContainer);
-    return headerContainer;
+
+    return welcomeContainer;
 }
 
 //function to create main container
-const createMainContainer=()=>{
-    let mainContainer=createDom('div','main-container');
+const createHomeMainContainer=()=>{
+
 
     //create home page main container
     let hpMainContainer=createDom('div','hp-main-container');
@@ -131,9 +129,8 @@ const createMainContainer=()=>{
     //append both containers to the home page main container
     hpMainContainer.appendChild(hpTodayContainer);
     hpMainContainer.appendChild(hpProjectContainer);
-    //append home page container to the main overall container
-    mainContainer.appendChild(hpMainContainer);
-    return mainContainer;
+
+    return hpMainContainer;
 }
 
 
@@ -150,4 +147,4 @@ function createDom(type,className){
 
 
 //export functions
-export{createSidebar,addActiveClass,createHeader,createMainContainer};
+export{addActiveClass,hpHeaderContent,createHomeMainContainer};

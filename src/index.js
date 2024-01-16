@@ -3,26 +3,27 @@
 
 //import functions from external files
 import {createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject} from './todos';
-import {createSidebar,addActiveClass,createHeader,createMainContainer} from './home-page';
+import {addActiveClass,hpHeaderContent,createHomeMainContainer} from './home-page';
 import {createProjectDialog,createTaskDialog} from './todos-dom';
 
 //DOM elements
 const contentContainer=document.querySelector('.content');
-
+const headerContainer=document.querySelector('.header-container');
+const mainContainer=document.querySelector('.main-container');
 
 //array that holds all projects and initializes the default project that contains every todo created
-let allTodos=createProject('All Todos');
-let allProjects=[];
+/*let allTodos=createProject('All Todos');
+let allProjects=[];*/
 
 
 //run functions to create home page on page load
 document.addEventListener('DOMContentLoaded',()=>{
-    contentContainer.appendChild(createSidebar());
+    headerContainer.appendChild(hpHeaderContent())
     addActiveClass('home');
-    contentContainer.appendChild(createHeader());
-    contentContainer.appendChild(createMainContainer());
-    contentContainer.appendChild(createProjectDialog());
-    contentContainer.appendChild(createTaskDialog());
+    mainContainer.appendChild(createHomeMainContainer());
+    //contentContainer.appendChild(createMainContainer());
+    //contentContainer.appendChild(createProjectDialog());
+    //contentContainer.appendChild(createTaskDialog());
     return contentContainer;
 });
 

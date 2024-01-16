@@ -117,6 +117,23 @@ function addTodoToProject(todo,chosenProject){
 
 export{createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject};
 
+//data manager
+export const todoManager=()=>{
+    let currentProject='home';
+    let currentPage='home';
+    let allTodos=createProject('All Todos');
+    let allProjects=[];
+
+    function changeCurrentProject(newProject){
+        currentProject=newProject;
+    }
+
+    function getCurrentProject(){
+        return currentProject;
+    }
+
+}
+
 //test conditions
 /*
 let joe=createTodo('dentist','pull tooth',new Date(2024,0,4),'low');

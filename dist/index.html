@@ -16,7 +16,42 @@
 </head>
 <body>
     <div class="content">
+        <header class="header-container">
 
+        </header>
+        <nav class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-tab" id="home-tab">
+                    <svg class="sidebar-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>home</title><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg>
+                    <p class="sidebar-name">Home</p>
+                </div>
+                <div class="sidebar-tab" id="tasks-tab">
+                    <svg class="sidebar-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>check-circle</title><path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" /></svg>
+                    <p class="sidebar-name">Tasks</p>
+                </div>
+                <div class="sidebar-tab" id="projects-tab">
+                    <svg class="sidebar-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>file-multiple</title><path d="M15,7H20.5L15,1.5V7M8,0H16L22,6V18A2,2 0 0,1 20,20H8C6.89,20 6,19.1 6,18V2A2,2 0 0,1 8,0M4,4V22H20V24H4A2,2 0 0,1 2,22V4H4Z" /></svg>
+                    <p class="sidebar-name">Projects</p>
+                </div>
+            </div>
+        </nav>
+        <main class="main-container">
+
+        </main>
     </div>
+
+    <!--Create Task Dialog-->
+    <dialog id="create-task-dialog">
+        <div class="input-container">
+            <form method="post" id="task-form">
+                <button formmethod="dialog" class="cancel-button" formnovalidate>x</button>
+                <div class="task-title-input">
+                    <label for="task-title">Task Name: </label>
+                    <input type="text" class="single-line-input" name="task-title" id="task-title">
+                </div>
+
+            </form>
+        </div>
+    </dialog>
 </body>
 </html>
