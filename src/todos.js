@@ -118,7 +118,7 @@ function addTodoToProject(todo,chosenProject){
 export{createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject};
 
 //data manager
-export const todoManager=()=>{
+export const todoManager=(function (){
     let currentProject='home';
     let currentPage='home';
     let allTodos=createProject('All Todos');
@@ -132,7 +132,7 @@ export const todoManager=()=>{
         return currentProject;
     }
 
-}
+})();
 
 //test conditions
 /*
