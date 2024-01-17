@@ -7,10 +7,25 @@ import {hpHeaderContent,createHomeMainContainer} from './home-page';
 import {domManager} from './todos-dom';
 
 
-//DOM elements
+//main DOM elements
 const contentContainer=document.querySelector('.content');
 const headerContainer=document.querySelector('.header-container');
 const mainContainer=document.querySelector('.main-container');
+//sidebar DOM elements
+const homeTab=document.querySelector('#home-tab');
+const tasksTab=document.querySelector('#tasks-tab');
+const projectsTab=document.querySelector('#projects-tab');
+//create task dialog DOM elements
+const createTaskDialog=document.querySelector('#create-task-dialog');
+const cancelTaskDialog=document.querySelector('#cancel-create-task');
+const submitTaskDialog=document.querySelector('#submit-button-task');
+//create project dialog DOM elements
+const createProjectDialog=document.querySelector('#create-project-dialog');
+const cancelProjectDialog=document.querySelector('#cancel-create-project');
+const submitProjectDialog=document.querySelector('#submit-button-project');
+
+
+
 
 //array that holds all projects and initializes the default project that contains every todo created
 /*let allTodos=createProject('All Todos');
