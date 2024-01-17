@@ -44,7 +44,7 @@
     <dialog id="create-task-dialog">
         <div class="input-container">
             <form method="post" id="task-form">
-                <button formmethod="dialog" class="cancel-button" formnovalidate>x</button>
+                <button formmethod="dialog" id="cancel-create-task" class="cancel-button" formnovalidate>x</button>
                 <div class="task-title-input">
                     <label for="task-title">Task Name: </label>
                     <input type="text" class="single-line-input" name="task-title" id="task-title">
@@ -81,7 +81,7 @@
     <dialog id="create-project-dialog">
         <div class="input-container">
             <form method="post" id="project-form">
-                <button class="cancel-button" formmethod="dialog" formnovalidate>x</button>
+                <button id="cancel-create-project" class="cancel-button" formmethod="dialog" formnovalidate>x</button>
                 <div class="project-title-input">
                     <label for="project-title">Project Name: </label>
                     <input type="text" class="single-line-input" name="project-title" id="project-title">
