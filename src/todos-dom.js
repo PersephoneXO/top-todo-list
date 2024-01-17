@@ -32,10 +32,3 @@ export const domManager=(function (){
 
     return{addActiveClass};
 })();
-
-
-
-
-
-
-export{};
