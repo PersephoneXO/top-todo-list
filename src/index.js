@@ -5,7 +5,7 @@
 //import {createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject,todoManager} from './todos';
 import {hpHeaderContent,createHomeMainContainer} from './home-page';
 import {domManager} from './todos-dom';
-import { todoManager } from './todos';
+import {todoManager} from './todos';
 
 //main DOM elements
 const contentContainer=document.querySelector('.content');
@@ -20,6 +20,7 @@ const createTaskDialog=document.querySelector('#create-task-dialog');
 const taskForm=document.querySelector('#task-form');
 const cancelTaskDialog=document.querySelector('#cancel-create-task');
 const submitTaskDialog=document.querySelector('#submit-button-task');
+const existingProjectList=document.querySelector('#existing-projects-list');
 //create project dialog DOM elements
 const createProjectDialog=document.querySelector('#create-project-dialog');
 const projectForm=document.querySelector('#project-form');
@@ -64,6 +65,7 @@ cancelTaskDialog.addEventListener('click',(e)=>{
 document.addEventListener('click',(e)=>{
     const target=e.target.closest('.create-task-button');
     if(target){
+        domManager.populateExistingProjectsChoice(allProjects,existingProjectList);
         createTaskDialog.showModal();
     }
 });
@@ -80,7 +82,7 @@ document.addEventListener('click',(e)=>{
                 allProjects.push(todoManager.createProject(projectName));
                 createProjectDialog.close();
                 projectForm.reset();
-                console.log(allProjects)
+                //console.log(allProjects)
             }
     }
 });

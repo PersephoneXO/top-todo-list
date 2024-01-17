@@ -30,5 +30,14 @@ export const domManager=(function (){
         }
     }
 
-    return{addActiveClass};
+    //populate the project choice array
+    function populateExistingProjectsChoice(allProjects,inputField){
+        allProjects.forEach(project=>{
+            let option=document.createElement('option');
+            option.textContent=project.title;
+            inputField.appendChild(option);
+        });
+    }
+
+    return{addActiveClass, populateExistingProjectsChoice};
 })();

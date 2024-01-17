@@ -148,13 +148,13 @@ export const todoManager=(function (){
 
 //test conditions
 /*
-let joe=createTodo('dentist','pull tooth',new Date(2024,0,4),'low');
-let billy=createTodo('doctor','medicine',new Date(2024,5,25),'high');
-let luke=createTodo('teacher','teach',new Date(2024,2,9),'medium');
-let henry=createTodo('agent','spy',new Date(2024,0,4),'high');
-let project=createProject('test',[joe,billy,luke,henry]);
+let joe=todoManager.createTodo('dentist','pull tooth',new Date(2024,0,4),'low');
+let billy=todoManager.createTodo('doctor','medicine',new Date(2024,5,25),'high');
+let luke=todoManager.createTodo('teacher','teach',new Date(2024,2,9),'medium');
+let henry=todoManager.createTodo('agent','spy',new Date(2024,0,4),'high');
+let project=todoManager.createProject('test',[joe,billy,luke,henry]);
 
 //console.log(project);
-sortTodos(project);
+todoManager.sortTodos(project);
 console.log(project.sortedTodos);
 */
