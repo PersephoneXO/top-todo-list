@@ -65,15 +65,14 @@ cancelTaskDialog.addEventListener('click',(e)=>{
 document.addEventListener('click',(e)=>{
     const target=e.target.closest('.create-task-button');
     if(target){
+        existingProjectList.innerHTML="";
         domManager.populateExistingProjectsChoice(allProjects,existingProjectList);
         createTaskDialog.showModal();
     }
 });
 
 //successfully creates and adds project
-document.addEventListener('click',(e)=>{
-    const target=e.target.closest('#submit-button-project');
-    if(target){
+submitProjectDialog.addEventListener('click',(e)=>{
             e.preventDefault();
             let projectName=document.querySelector('#project-title').value;
             if(projectName.length<1){
@@ -82,7 +81,6 @@ document.addEventListener('click',(e)=>{
                 allProjects.push(todoManager.createProject(projectName));
                 createProjectDialog.close();
                 projectForm.reset();
-                //console.log(allProjects)
+                //console.log(allProjects);
             }
-    }
 });

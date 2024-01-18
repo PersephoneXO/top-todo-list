@@ -32,6 +32,12 @@ export const domManager=(function (){
 
     //populate the project choice array
     function populateExistingProjectsChoice(allProjects,inputField){
+        let defaultOption=document.createElement('option');
+        defaultOption.textContent='No';
+        defaultOption.id="do-not-add";
+        defaultOption.setAttribute('selected','selected');
+        inputField.appendChild(defaultOption);
+
         allProjects.forEach(project=>{
             let option=document.createElement('option');
             option.textContent=project.title;
