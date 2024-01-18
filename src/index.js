@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 //close project modal on button click
 cancelProjectDialog.addEventListener('click',(e)=>{
     createProjectDialog.close();
+    projectForm.reset();
 });
 
 //open project modal on button click
@@ -59,6 +60,7 @@ document.addEventListener('click',(e)=>{
 //close task modal on button click
 cancelTaskDialog.addEventListener('click',(e)=>{
     createTaskDialog.close();
+    taskForm.reset();
 });
 
 //open task modal on button click
@@ -83,4 +85,17 @@ submitProjectDialog.addEventListener('click',(e)=>{
                 projectForm.reset();
                 //console.log(allProjects);
             }
+});
+
+//successfully creates and adds todos
+submitTaskDialog.addEventListener('click',(e)=>{
+    e.preventDefault();
+    let todoName=document.querySelector('#task-title').value;
+    let todoDescription=document.querySelector('#task-description').value;
+    let todoDeadline=document.querySelector('#deadline').value;
+    let todoPriority=document.querySelector('input[name="priority"]:checked').value;
+    let getSelectedProject=document.querySelector('#existing-projects-list');
+    let todoProject=getSelectedProject.options[getSelectedProject.selectedIndex].text;
+
+
 });
