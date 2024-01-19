@@ -5,6 +5,7 @@ const { isToday, lightFormat, isEqual } = require("date-fns");
 
 //data manager
 export const todoManager=(function (){
+    let todoID=0;
     let currentProject='home';
     let currentPage='home';
     //change the current project to a new project
@@ -25,11 +26,13 @@ export const todoManager=(function (){
     }
 
     //create a todo object
-    const createTodo=(title,description,deadline,priority,projectName)=>{
+    const createTodo=(title,description,deadline,priority,projectName='')=>{
         //let todayDate=format(new Date(),"cccc LLLL d, yyyy");
         let checkmark=false;
         let formatedDeadline=lightFormat(deadline,'yyyy-MM-dd');
-        return {title,description,deadline,formatedDeadline,priority,checkmark,projectName};
+        let identifier=todoID;
+        todoID++;
+        return {title,description,deadline,formatedDeadline,priority,checkmark,projectName,identifier};
     };
 
     //create a project object
@@ -130,6 +133,14 @@ export const todoManager=(function (){
         return chosenProject;
     }
 
+    //add todo to the global project
+    function addTodoToGlobal(newTodo,global){
+        global.allTodos.push(newTodo);
+        sortTodos(global);
+        return global;
+
+    }
+
     return{
         changeCurrentProject,
         getCurrentProject,
@@ -141,7 +152,8 @@ export const todoManager=(function (){
         isDeadlineToday,
         sortTodos,
         changePriority,
-        addTodoToProject
+        addTodoToProject,
+        addTodoToGlobal
     }
 
 })();

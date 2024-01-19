@@ -93,9 +93,28 @@ submitTaskDialog.addEventListener('click',(e)=>{
     let todoName=document.querySelector('#task-title').value;
     let todoDescription=document.querySelector('#task-description').value;
     let todoDeadline=document.querySelector('#deadline').value;
-    let todoPriority=document.querySelector('input[name="priority"]:checked').value;
+    let todoPriorityTest=document.querySelector('input[name="priority"]:checked');
     let getSelectedProject=document.querySelector('#existing-projects-list');
     let todoProject=getSelectedProject.options[getSelectedProject.selectedIndex].text;
+    if(todoName.length<1||todoPriorityTest===null){
+        alert('Please fill out all fields');
+    }
+    else{
+        let todoPriority=document.querySelector('input[name="priority"]:checked').value;
+        let newTodo=todoManager.createTodo(todoName,todoDescription,todoDeadline,todoPriority);
+        todoManager.addTodoToGlobal(newTodo,allTodos);
 
+        if(todoProject!='No'){
+            for(let thisProject of allProjects){
+                if(thisProject.title===todoProject){
+                    todoManager.addTodoToProject(newTodo,thisProject);
+                }
+            }
+        }
+    }
+    //console.log(allProjects);
+    //console.log(allTodos);
+    createTaskDialog.close();
+    taskForm.reset();
 
 });

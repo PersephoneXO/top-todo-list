@@ -46,19 +46,19 @@
             <form method="post" id="task-form">
                 <button formmethod="dialog" id="cancel-create-task" class="cancel-button" formnovalidate>x</button>
                 <div class="task-title-input">
-                    <label for="task-title">Task Name: </label>
-                    <input type="text" class="single-line-input" name="task-title" id="task-title">
+                    <label for="task-title">Task Name*: </label>
+                    <input type="text" class="single-line-input" name="task-title" id="task-title" required>
                 </div>
                 <div class="task-description-input">
                     <label for="task-description">Task Description: </label>
                     <input type="text" class="single-line-input" name="task-description" id="task-description">
                 </div>
                 <div class="task-deadline-input">
-                    <label for="deadline">Deadline: </label>
+                    <label for="deadline">Deadline*: </label>
                     <input type="date" class="deadline-input" name="deadline" id="deadline" value="2024-01-10">
                 </div>
                 <div class="radio-container">
-                    <p class="radio-label">Task Priority: </p>
+                    <p class="radio-label">Task Priority*: </p>
                     <div class="high-container">
                         <label for="high">High</label>
                         <input type="radio" class="priority-choice" name="priority" id="high" value="high">
