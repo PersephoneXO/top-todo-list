@@ -81,10 +81,16 @@ submitProjectDialog.addEventListener('click',(e)=>{
                 alert('Please fill out all fields');
             }else{
                 allProjects.push(todoManager.createProject(projectName));
+
+                if(todoManager.getCurrentProject()=='allProjects'){
+                    pageManager.updateNumOfProjects(allProjects);
+                }
+
                 createProjectDialog.close();
                 projectForm.reset();
                 //console.log(allProjects);
             }
+
 });
 
 //successfully creates and adds todos
@@ -114,6 +120,11 @@ submitTaskDialog.addEventListener('click',(e)=>{
     }
     //console.log(allProjects);
     //console.log(allTodos);
+    if(todoManager.getCurrentProject()=='tasks'){
+        pageManager.updateNumOfTasks(allTodos);
+    }
+
+
     createTaskDialog.close();
     taskForm.reset();
 });
@@ -125,6 +136,7 @@ homeTab.addEventListener('click',(e)=>{
     headerContainer.appendChild(pageManager.hpHeaderContent())
     domManager.addActiveClass('home');
     mainContainer.appendChild(pageManager.createHomeMainContainer());
+    todoManager.changeCurrentProject('home');
     return contentContainer;
 });
 
@@ -133,7 +145,9 @@ tasksTab.addEventListener('click',(e)=>{
     mainContainer.innerHTML="";
     headerContainer.innerHTML="";
     domManager.addActiveClass('tasks');
-
+    headerContainer.appendChild(pageManager.tpHeaderContent(allTodos));
+    todoManager.changeCurrentProject('tasks');
+    return contentContainer;
 });
 
 //run functions to create projects page on "projects" tab click
@@ -141,4 +155,7 @@ projectsTab.addEventListener('click',(e)=>{
     mainContainer.innerHTML="";
     headerContainer.innerHTML="";
     domManager.addActiveClass('projects');
+    headerContainer.appendChild(pageManager.ppHeaderContent(allProjects));
+    todoManager.changeCurrentProject('allProjects');
+    return contentContainer;
 });

@@ -75,8 +75,69 @@ export const pageManager=(function(){
         return hpMainContainer;
     }
 
+    //function to create the content for the header on the task page
+    function tpHeaderContent(allTodos){
+        let headerContent=createDom('div','header-content');
+
+        let headerTitle=createDom('p','header-title');
+        headerTitle.textContent="Tasks";
+        headerContent.appendChild(headerTitle);
+
+        let headerSubtitle=createDom('p','header-subtitle');
+        let numOfTasks=allTodos.allTodos.length;
+        headerSubtitle.textContent=`${numOfTasks} Tasks`;
+        headerContent.appendChild(headerSubtitle);
+
+        let addTaskButton=createDom('button','create-task-button');
+        addTaskButton.textContent='Add Task';
+        headerContent.appendChild(addTaskButton);
+
+        return headerContent;
+    }
+
+    //function to update the num of tasks if a task is added on the task page
+    function updateNumOfTasks(allTodos){
+        let headerSubtitle=document.querySelector('.header-subtitle');
+        headerSubtitle.textContent="";
+        let numOfTasks=allTodos.allTodos.length;
+        headerSubtitle.textContent=`${numOfTasks} Tasks`;
+        return headerSubtitle;
+    }
+
+    //function to create the content for the header on the projects page
+    function ppHeaderContent(allProjects){
+        let headerContent=createDom('div','header-content');
+
+        let headerTitle=createDom('p','header-title');
+        headerTitle.textContent="Projects";
+        headerContent.appendChild(headerTitle);
+
+        let headerSubtitle=createDom('p','header-subtitle');
+        let numOfProjects=allProjects.length;
+        headerSubtitle.textContent=`${numOfProjects} Projects`;
+        headerContent.appendChild(headerSubtitle);
+
+        let addProjectButton=createDom('button','create-project-button');
+        addProjectButton.textContent='Add Project';
+        headerContent.appendChild(addProjectButton);
+
+        return headerContent;
+    }
+
+    //function to update the num of projects of a project is added on the projects page
+    function updateNumOfProjects(allProjects){
+        let headerSubtitle=document.querySelector('.header-subtitle');
+        let numOfProjects=allProjects.length;
+        headerSubtitle.textContent=`${numOfProjects} Projects`;
+        return headerSubtitle;
+    }
+
     return{
         hpHeaderContent,
-        createHomeMainContainer
+        createHomeMainContainer,
+        tpHeaderContent,
+        ppHeaderContent,
+        updateNumOfTasks,
+        updateNumOfProjects
     }
 })();

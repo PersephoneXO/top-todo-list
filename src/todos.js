@@ -7,7 +7,7 @@ const { isToday, lightFormat, isEqual } = require("date-fns");
 export const todoManager=(function (){
     let todoID=0;
     let currentProject='home';
-    let currentPage='home';
+    //let currentPage='home';
     //change the current project to a new project
     function changeCurrentProject(newProject){
         currentProject=newProject;
@@ -16,6 +16,7 @@ export const todoManager=(function (){
     function getCurrentProject(){
         return currentProject;
     }
+    /*
     //change the current page to a new page
     function changeCurrentPage(newPage){
         currentPage=newPage;
@@ -23,7 +24,7 @@ export const todoManager=(function (){
     //return the current page
     function getCurrentPage(){
         return currentPage;
-    }
+    }*/
 
     //create a todo object
     const createTodo=(title,description,deadline,priority,projectName='')=>{
@@ -144,8 +145,6 @@ export const todoManager=(function (){
     return{
         changeCurrentProject,
         getCurrentProject,
-        changeCurrentPage,
-        getCurrentPage,
         createTodo,
         createProject,
         toggleCheck,
