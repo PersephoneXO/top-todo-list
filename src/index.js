@@ -3,7 +3,7 @@
 
 //import functions from external files
 //import {createTodo,createProject,toggleCheck,isDeadlineToday,sortTodos,changePriority,addTodoToProject,todoManager} from './todos';
-import {hpHeaderContent,createHomeMainContainer} from './home-page';
+import {pageManager} from './pages-content';
 import {domManager} from './todos-dom';
 import {todoManager} from './todos';
 
@@ -37,9 +37,9 @@ let allProjects=[];
 
 //run functions to create home page on page load
 document.addEventListener('DOMContentLoaded',()=>{
-    headerContainer.appendChild(hpHeaderContent())
+    headerContainer.appendChild(pageManager.hpHeaderContent())
     domManager.addActiveClass('home');
-    mainContainer.appendChild(createHomeMainContainer());
+    mainContainer.appendChild(pageManager.createHomeMainContainer());
     return contentContainer;
 });
 
@@ -116,5 +116,29 @@ submitTaskDialog.addEventListener('click',(e)=>{
     //console.log(allTodos);
     createTaskDialog.close();
     taskForm.reset();
+});
 
+//run functions to create home page on "home" tab click
+homeTab.addEventListener('click',(e)=>{
+    mainContainer.innerHTML="";
+    headerContainer.innerHTML="";
+    headerContainer.appendChild(pageManager.hpHeaderContent())
+    domManager.addActiveClass('home');
+    mainContainer.appendChild(pageManager.createHomeMainContainer());
+    return contentContainer;
+});
+
+//run functions to create tasks page on "task" tab click
+tasksTab.addEventListener('click',(e)=>{
+    mainContainer.innerHTML="";
+    headerContainer.innerHTML="";
+    domManager.addActiveClass('tasks');
+
+});
+
+//run functions to create projects page on "projects" tab click
+projectsTab.addEventListener('click',(e)=>{
+    mainContainer.innerHTML="";
+    headerContainer.innerHTML="";
+    domManager.addActiveClass('projects');
 });

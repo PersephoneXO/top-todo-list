@@ -64,8 +64,9 @@ body{
     color: #ffffff;
     padding-left: 50px;
     padding-right: 50px;
-    height: min-content;
-    padding-bottom: 25px;
+    /*height: min-content;*/
+    height: 172px;
+    padding-bottom: 35px;
 
 }
 
@@ -94,6 +95,7 @@ body{
     padding-right: 50px;
     height: auto;
     padding-top: 25px;
+    padding-bottom: 25px;
 
 }
 
