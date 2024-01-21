@@ -6,6 +6,7 @@ const { isToday, lightFormat, isEqual } = require("date-fns");
 //data manager
 export const todoManager=(function (){
     let todoID=0;
+    let projectID=0;
     let currentProject='home';
     //let currentPage='home';
     //change the current project to a new project
@@ -31,14 +32,16 @@ export const todoManager=(function (){
         //let todayDate=format(new Date(),"cccc LLLL d, yyyy");
         let checkmark=false;
         let formatedDeadline=lightFormat(deadline,'yyyy-MM-dd');
-        let identifier=todoID;
+        let identifier=`t${todoID}`;
         todoID++;
         return {title,description,deadline,formatedDeadline,priority,checkmark,projectName,identifier};
     };
 
     //create a project object
     const createProject=(title,allTodos=[],sortedTodos=[])=>{
-        return {title,allTodos,sortedTodos};
+        let identifier=`p${projectID}`;
+        projectID++;
+        return {title,allTodos,sortedTodos,identifier};
     };
 
     //toggle checkmark

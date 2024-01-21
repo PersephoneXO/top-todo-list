@@ -45,5 +45,23 @@ export const domManager=(function (){
         });
     }
 
-    return{addActiveClass, populateExistingProjectsChoice};
+    //function to create a project dom element
+    function projectDomElement(thisProject){
+        let projectDiv=createDom('div','dom-project-div');
+        projectDiv.id=`${thisProject.identifier}`;
+        let projectTitle=createDom('p','dom-project-title');
+        projectTitle.textContent=`${thisProject.title}`;
+        projectDiv.appendChild(projectTitle);
+
+        let viewProjectButton=createDom('button','view-project-button');
+        projectDiv.appendChild(viewProjectButton);
+
+        return projectDiv;
+    }
+
+    return{
+        addActiveClass,
+        populateExistingProjectsChoice,
+        projectDomElement
+    };
 })();
