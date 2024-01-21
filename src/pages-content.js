@@ -83,14 +83,17 @@ export const pageManager=(function(){
         headerTitle.textContent="Tasks";
         headerContent.appendChild(headerTitle);
 
+        let hSubtitleContainer=createDom('div','header-subtitle-button-container');
+
         let headerSubtitle=createDom('p','header-subtitle');
         let numOfTasks=allTodos.allTodos.length;
         headerSubtitle.textContent=`${numOfTasks} Tasks`;
-        headerContent.appendChild(headerSubtitle);
+        hSubtitleContainer.appendChild(headerSubtitle);
 
         let addTaskButton=createDom('button','create-task-button');
         addTaskButton.textContent='Add Task';
-        headerContent.appendChild(addTaskButton);
+        hSubtitleContainer.appendChild(addTaskButton);
+        headerContent.appendChild(hSubtitleContainer);
 
         return headerContent;
     }
@@ -112,14 +115,17 @@ export const pageManager=(function(){
         headerTitle.textContent="Projects";
         headerContent.appendChild(headerTitle);
 
+        let hSubtitleContainer=createDom('div','header-subtitle-button-container');
+
         let headerSubtitle=createDom('p','header-subtitle');
         let numOfProjects=allProjects.length;
         headerSubtitle.textContent=`${numOfProjects} Projects`;
-        headerContent.appendChild(headerSubtitle);
+        hSubtitleContainer.appendChild(headerSubtitle);
 
         let addProjectButton=createDom('button','create-project-button');
         addProjectButton.textContent='Add Project';
-        headerContent.appendChild(addProjectButton);
+        hSubtitleContainer.appendChild(addProjectButton);
+        headerContent.appendChild(hSubtitleContainer);
 
         return headerContent;
     }
