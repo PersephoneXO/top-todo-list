@@ -39,7 +39,12 @@ let allProjects=[];
 document.addEventListener('DOMContentLoaded',()=>{
     headerContainer.appendChild(pageManager.hpHeaderContent())
     domManager.addActiveClass('home');
+    todoManager.changeCurrentProject('home');
     mainContainer.appendChild(pageManager.createHomeMainContainer());
+    if(allProjects.length>0){
+        let hpProjectContainer=document.querySelector('.hp-project-content');
+        pageManager.populateProjectDoms(hpProjectContainer,allProjects);
+    }
     return contentContainer;
 });
 
@@ -86,6 +91,12 @@ submitProjectDialog.addEventListener('click',(e)=>{
                     pageManager.updateNumOfProjects(allProjects);
                     mainContainer.innerHTML="";
                     mainContainer.appendChild(pageManager.createProjectsMainContainer(allProjects));
+                }
+
+                if(todoManager.getCurrentProject()=='home'){
+                    let hpProjectContainer=document.querySelector('.hp-project-content');
+                    hpProjectContainer.innerHTML="";
+                    pageManager.populateProjectDoms(hpProjectContainer,allProjects);
                 }
 
                 createProjectDialog.close();
@@ -138,6 +149,10 @@ homeTab.addEventListener('click',(e)=>{
     headerContainer.appendChild(pageManager.hpHeaderContent())
     domManager.addActiveClass('home');
     mainContainer.appendChild(pageManager.createHomeMainContainer());
+    if(allProjects.length>0){
+        let hpProjectContainer=document.querySelector('.hp-project-content');
+        pageManager.populateProjectDoms(hpProjectContainer,allProjects);
+    }
     todoManager.changeCurrentProject('home');
     return contentContainer;
 });

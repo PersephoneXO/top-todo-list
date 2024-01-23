@@ -144,11 +144,17 @@ export const pageManager=(function(){
     function createProjectsMainContainer(allProjects){
         let ppMainContainer=createDom('div','pp-main-container');
 
-        allProjects.forEach(project=>{
-            ppMainContainer.appendChild(domManager.projectDomElement(project));
-        });
+        populateProjectDoms(ppMainContainer,allProjects);
 
         return ppMainContainer;
+    }
+
+    //function to populate a specified div with all project doms
+    function populateProjectDoms(specifiedDiv ,allProjects){
+        allProjects.forEach(project=>{
+            specifiedDiv.appendChild(domManager.projectDomElement(project));
+        });
+        return specifiedDiv;
     }
 
     return{
@@ -158,6 +164,7 @@ export const pageManager=(function(){
         ppHeaderContent,
         updateNumOfTasks,
         updateNumOfProjects,
-        createProjectsMainContainer
+        createProjectsMainContainer,
+        populateProjectDoms
     }
 })();
