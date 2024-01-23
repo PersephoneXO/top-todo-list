@@ -135,6 +135,8 @@ submitTaskDialog.addEventListener('click',(e)=>{
     //console.log(allTodos);
     if(todoManager.getCurrentProject()=='tasks'){
         pageManager.updateNumOfTasks(allTodos);
+        mainContainer.innerHTML="";
+        mainContainer.appendChild(pageManager.createTasksMainContainer(allTodos));
     }
 
 
@@ -163,6 +165,7 @@ tasksTab.addEventListener('click',(e)=>{
     headerContainer.innerHTML="";
     domManager.addActiveClass('tasks');
     headerContainer.appendChild(pageManager.tpHeaderContent(allTodos));
+    mainContainer.appendChild(pageManager.createTasksMainContainer(allTodos));
     todoManager.changeCurrentProject('tasks');
     return contentContainer;
 });

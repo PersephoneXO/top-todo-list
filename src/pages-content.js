@@ -109,6 +109,13 @@ export const pageManager=(function(){
         return headerSubtitle;
     }
 
+    //function to create the main container content on the task page
+    function createTasksMainContainer(allTodos){
+        let tpMainContainer=createDom('div','tp-main-container');
+        populateTodoDoms(tpMainContainer,allTodos.allTodos);
+        return tpMainContainer;
+    }
+
     //function to create the content for the header on the projects page
     function ppHeaderContent(allProjects){
         let headerContent=createDom('div','header-content');
@@ -150,12 +157,22 @@ export const pageManager=(function(){
     }
 
     //function to populate a specified div with all project doms
-    function populateProjectDoms(specifiedDiv ,allProjects){
+    function populateProjectDoms(specifiedDiv, allProjects){
         allProjects.forEach(project=>{
             specifiedDiv.appendChild(domManager.projectDomElement(project));
         });
         return specifiedDiv;
     }
+
+    //function to populate a specified div with all todo doms
+    function populateTodoDoms(specifiedDiv, allTodos){
+        allTodos.forEach(todo=>{
+            specifiedDiv.appendChild(domManager.todoDomElement(todo));
+        });
+        return specifiedDiv;
+    }
+
+
 
     return{
         hpHeaderContent,
@@ -165,6 +182,8 @@ export const pageManager=(function(){
         updateNumOfTasks,
         updateNumOfProjects,
         createProjectsMainContainer,
-        populateProjectDoms
+        populateProjectDoms,
+        populateTodoDoms,
+        createTasksMainContainer
     }
 })();
