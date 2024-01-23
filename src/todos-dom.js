@@ -54,14 +54,38 @@ export const domManager=(function (){
         projectDiv.appendChild(projectTitle);
 
         let viewProjectButton=createDom('button','view-project-button');
+        viewProjectButton.textContent='View Project';
         projectDiv.appendChild(viewProjectButton);
 
         return projectDiv;
     }
 
+    function todoDomElement(thisTodo){
+        let todoDiv=createDom('div','dom-todo-div');
+        todoDiv.id=`${thisTodo.identifier}`;
+        todoDiv.classList.add(`${thisTodo.priority}`);
+        let todoTitle=createDom('p','dom-todo-title');
+        todoTitle.textContent=`${thisTodo.title}`;
+        todoDiv.appendChild(todoTitle);
+
+        let todoDeadline=createDom('p','dom-todo-deadline');
+        todoDeadline.textContent=`${thisTodo.deadline}`;
+        todoDiv.appendChild(todoDeadline);
+
+        let todoCheckBox=createDom('button','dom-todo-checkbox');
+        todoDiv.appendChild(todoCheckBox);
+
+        let viewTodoButton=createDom('button','view-todo-button');
+        viewTodoButton.textContent='View Task';
+        todoDiv.appendChild(viewTodoButton);
+
+        return todoDiv;
+    }
+
     return{
         addActiveClass,
         populateExistingProjectsChoice,
-        projectDomElement
+        projectDomElement,
+        todoDomElement
     };
 })();

@@ -1,3 +1,5 @@
+import { domManager } from "./todos-dom";
+
 //function to create divs
 //I should've made this earlier but I only thought of it halfway through createMainContainer
 function createDom(type,className){
@@ -138,12 +140,24 @@ export const pageManager=(function(){
         return headerSubtitle;
     }
 
+    //function to create the main container content on the project page
+    function createProjectsMainContainer(allProjects){
+        let ppMainContainer=createDom('div','pp-main-container');
+
+        allProjects.forEach(project=>{
+            ppMainContainer.appendChild(domManager.projectDomElement(project));
+        });
+
+        return ppMainContainer;
+    }
+
     return{
         hpHeaderContent,
         createHomeMainContainer,
         tpHeaderContent,
         ppHeaderContent,
         updateNumOfTasks,
-        updateNumOfProjects
+        updateNumOfProjects,
+        createProjectsMainContainer
     }
 })();

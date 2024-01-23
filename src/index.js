@@ -84,6 +84,8 @@ submitProjectDialog.addEventListener('click',(e)=>{
 
                 if(todoManager.getCurrentProject()=='allProjects'){
                     pageManager.updateNumOfProjects(allProjects);
+                    mainContainer.innerHTML="";
+                    mainContainer.appendChild(pageManager.createProjectsMainContainer(allProjects));
                 }
 
                 createProjectDialog.close();
@@ -156,6 +158,7 @@ projectsTab.addEventListener('click',(e)=>{
     headerContainer.innerHTML="";
     domManager.addActiveClass('projects');
     headerContainer.appendChild(pageManager.ppHeaderContent(allProjects));
+    mainContainer.appendChild(pageManager.createProjectsMainContainer(allProjects));
     todoManager.changeCurrentProject('allProjects');
     return contentContainer;
 });
