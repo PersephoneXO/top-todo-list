@@ -64,20 +64,32 @@ export const domManager=(function (){
         let todoDiv=createDom('div','dom-todo-div');
         todoDiv.id=`${thisTodo.identifier}`;
         todoDiv.classList.add(`${thisTodo.priority}`);
+
+        let leftSide=createDom('div','dom-todo-left');
+        let rightSide=createDom('div','dom-todo-right');
+
         let todoTitle=createDom('p','dom-todo-title');
         todoTitle.textContent=`${thisTodo.title}`;
-        todoDiv.appendChild(todoTitle);
+        leftSide.appendChild(todoTitle);
+        todoDiv.appendChild(leftSide);
 
         let todoDeadline=createDom('p','dom-todo-deadline');
         todoDeadline.textContent=`${thisTodo.deadline}`;
         todoDiv.appendChild(todoDeadline);
 
-        let todoCheckBox=createDom('button','dom-todo-checkbox');
-        todoDiv.appendChild(todoCheckBox);
+        let todoCheckBox=document.createElement('input');
+        todoCheckBox.setAttribute('type','checkbox');
+        todoCheckBox.setAttribute('name','checkbox');
+        rightSide.appendChild(todoCheckBox);
+
+        let todoCheckmark=createDom('span','checkmark');
+        rightSide.appendChild(todoCheckmark);
 
         let viewTodoButton=createDom('button','view-todo-button');
         viewTodoButton.textContent='View Task';
-        todoDiv.appendChild(viewTodoButton);
+        rightSide.appendChild(viewTodoButton);
+
+        todoDiv.appendChild(rightSide);
 
         return todoDiv;
     }

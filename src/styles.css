@@ -150,3 +150,33 @@ html, body{
     display: flex;
     justify-content: space-between;
 }
+
+
+/*all tasks page and all projects page*/
+.tp-main-container, .pp-main-container{
+    background-color:#2f2f2f;
+    border-radius: 15px;
+    height: 65vh;
+    padding-top: 10px;
+}
+
+
+
+
+
+
+/*todo dom element*/
+.dom-todo-div{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 50px;
+    align-items: center;
+}
+
+.dom-todo-right{
+    display: flex;
+}
+
+.view-todo-button{
+    height: min-content;
+}
