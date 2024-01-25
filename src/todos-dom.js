@@ -57,6 +57,9 @@ export const domManager=(function (){
         viewProjectButton.textContent='View Project';
         projectDiv.appendChild(viewProjectButton);
 
+        let divDivider=createDom('hr','dom-divider');
+        projectDiv.appendChild(divDivider);
+
         return projectDiv;
     }
 
@@ -71,11 +74,35 @@ export const domManager=(function (){
         let todoTitle=createDom('p','dom-todo-title');
         todoTitle.textContent=`${thisTodo.title}`;
         leftSide.appendChild(todoTitle);
+
         todoDiv.appendChild(leftSide);
 
         let todoDeadline=createDom('p','dom-todo-deadline');
         todoDeadline.textContent=`${thisTodo.deadline}`;
         todoDiv.appendChild(todoDeadline);
+
+        //priority flag
+        let priorityFlag=document.createElement('div');
+        priorityFlag.innerHTML=`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="50" /></svg>`;
+        let thisPriority=thisTodo.priority;
+        switch(thisPriority){
+            case "high":
+                priorityFlag.classList.add('priority-flag-high');
+                break;
+            case "medium":
+                priorityFlag.classList.add('priority-flag-medium');
+                break;
+            case "low":
+                priorityFlag.classList.add('priority-flag-low');
+                break;
+        }
+        todoDiv.appendChild(priorityFlag);
+
+
+        let viewTodoButton=createDom('button','view-todo-button');
+        viewTodoButton.textContent='Details';
+        todoDiv.appendChild(viewTodoButton);
 
         let todoCheckBox=document.createElement('input');
         todoCheckBox.setAttribute('type','checkbox');
@@ -85,11 +112,11 @@ export const domManager=(function (){
         let todoCheckmark=createDom('span','checkmark');
         rightSide.appendChild(todoCheckmark);
 
-        let viewTodoButton=createDom('button','view-todo-button');
-        viewTodoButton.textContent='View Task';
-        rightSide.appendChild(viewTodoButton);
 
         todoDiv.appendChild(rightSide);
+
+        let divDivider=createDom('hr','dom-divider');
+        todoDiv.appendChild(divDivider);
 
         return todoDiv;
     }

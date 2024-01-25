@@ -160,6 +160,12 @@ html, body{
     padding-top: 10px;
 }
 
+.dom-divider{
+    width: 100%;
+    border: thin solid #161616;
+    grid-area: domDivider
+}
+
 
 
 
@@ -167,16 +173,75 @@ html, body{
 
 /*todo dom element*/
 .dom-todo-div{
+    /*
     display: flex;
     justify-content: space-between;
     padding-inline: 50px;
+    align-items: center;*/
+    padding-inline: 50px;
+    display: grid;
+    grid-template-areas: "todoLeft . . . todoRight"
+    "domDivider domDivider domDivider domDivider domDivider";
     align-items: center;
+    justify-items: center;
+    grid-template-columns: 350px auto auto min-content;
+
+}
+
+.dom-todo-left{
+    grid-area: todoLeft;
+    justify-self: start;
+}
+
+.priority-flag-high, .priority-flag-medium, .priority-flag-low {
+    width: 15px;
+    justify-self:start;
+}
+
+.priority-flag-high{
+    fill: red;
+}
+
+.priority-flag-medium{
+    fill: yellow;
+}
+
+.priority-flag-low{
+    fill: green;
 }
 
 .dom-todo-right{
-    display: flex;
+    grid-area: todoRight;
+    justify-self: end;
 }
 
-.view-todo-button{
+
+.view-todo-button, .view-project-button{
     height: min-content;
+    font-family: 'Source Sans 3', sans-serif;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background-color: #0e8f1b;
+    border: none;
+    color: #ffffff;
+}
+
+
+/*project dom element*/
+.dom-project-div {
+    padding-inline: 50px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    grid-template-areas: "domProjectTitle viewProject"
+    "domDivider domDivider";
+}
+
+.dom-project-title{
+    grid-area: domProjectTitle;
+}
+
+.view-project-button{
+    grid-area: viewProject;
 }

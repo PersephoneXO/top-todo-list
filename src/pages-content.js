@@ -112,7 +112,9 @@ export const pageManager=(function(){
     //function to create the main container content on the task page
     function createTasksMainContainer(allTodos){
         let tpMainContainer=createDom('div','tp-main-container');
+
         populateTodoDoms(tpMainContainer,allTodos.allTodos);
+
         return tpMainContainer;
     }
 
