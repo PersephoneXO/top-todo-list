@@ -180,3 +180,11 @@ projectsTab.addEventListener('click',(e)=>{
     todoManager.changeCurrentProject('allProjects');
     return contentContainer;
 });
+
+//run functions to create and show all todos of a specific project on "view project" button click
+document.addEventListener('click',(e)=>{
+    const target=e.target.closest('.view-project-button');
+    if(target){
+
+    }
+});

@@ -49,6 +49,9 @@ export const pageManager=(function(){
         addTaskButton.textContent='Add Task';
 
         let hpTodayContent=createDom('div','hp-today-content');
+        let hpTodayWipMarker=createDom('p','hp-today-wip-marker');
+        hpTodayWipMarker.textContent='! Work in Progress !';
+        hpTodayContent.appendChild(hpTodayWipMarker);
 
         hpTodayHeader.appendChild(hpTodayTitle);
         hpTodayHeader.appendChild(addTaskButton);
