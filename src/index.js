@@ -124,10 +124,18 @@ submitTaskDialog.addEventListener('click',(e)=>{
         todoManager.addTodoToGlobal(newTodo,allTodos);
 
         if(todoProject!='No'){
+            let currentProject;
             for(let thisProject of allProjects){
                 if(thisProject.title===todoProject){
+                    currentProject=thisProject;
                     todoManager.addTodoToProject(newTodo,thisProject);
                 }
+            }
+            let projectTitle=document.querySelector('.header-title').textContent;
+            if(projectTitle==currentProject.title){
+                pageManager.updateNumOfTasks(currentProject);
+                mainContainer.innerHTML="";
+                pageManager.createSpecificProjectPageMain(currentProject,mainContainer);
             }
         }
     }
@@ -185,6 +193,19 @@ projectsTab.addEventListener('click',(e)=>{
 document.addEventListener('click',(e)=>{
     const target=e.target.closest('.view-project-button');
     if(target){
+        let currentIdentifier=target.parentNode.id;
+        let thisProject;
+        allProjects.forEach(project=>{
+            if (project.identifier==currentIdentifier){
+                thisProject=project;
+            }
+        });
+        mainContainer.innerHTML="";
+        headerContainer.innerHTML="";
+        todoManager.changeCurrentProject(currentIdentifier);
+        pageManager.createSpecificProjectPageHeader(thisProject,headerContainer);
+        pageManager.createSpecificProjectPageMain(thisProject,mainContainer);
+        return mainContainer;
 
     }
 });

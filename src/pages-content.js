@@ -161,6 +161,44 @@ export const pageManager=(function(){
         return ppMainContainer;
     }
 
+
+    //function to create a specific project page header
+    function createSpecificProjectPageHeader(project,headerContainer){
+        //header content//
+        let headerContent=createDom('div','header-content');
+
+        let headerTitle=createDom('p','header-title');
+        headerTitle.textContent=`${project.title}`;
+        headerContent.appendChild(headerTitle);
+
+        let hSubtitleContainer=createDom('div','header-subtitle-button-container');
+
+        let headerSubtitle=createDom('p','header-subtitle');
+        let numOfTasks=project.allTodos.length;
+        headerSubtitle.textContent=`${numOfTasks} Tasks`;
+        hSubtitleContainer.appendChild(headerSubtitle);
+
+        let addTaskButton=createDom('button','create-task-button');
+        addTaskButton.textContent='Add Task';
+        hSubtitleContainer.appendChild(addTaskButton);
+        headerContent.appendChild(hSubtitleContainer);
+
+        headerContainer.appendChild(headerContent);
+        return headerContainer;
+    }
+
+
+    //function to create a specific projects tasks page
+    function createSpecificProjectPageMain(project,mainContainer){
+        let mainContent=createDom('div','sp-main-container');
+        populateTodoDoms(mainContent,project.allTodos);
+
+        mainContainer.appendChild(mainContent);
+
+        return mainContainer;
+    }
+
+
     //function to populate a specified div with all project doms
     function populateProjectDoms(specifiedDiv, allProjects){
         allProjects.forEach(project=>{
@@ -189,6 +227,8 @@ export const pageManager=(function(){
         createProjectsMainContainer,
         populateProjectDoms,
         populateTodoDoms,
-        createTasksMainContainer
+        createTasksMainContainer,
+        createSpecificProjectPageHeader,
+        createSpecificProjectPageMain
     }
 })();

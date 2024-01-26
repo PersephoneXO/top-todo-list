@@ -157,7 +157,7 @@ html, body{
 
 
 /*all tasks page and all projects page*/
-.tp-main-container, .pp-main-container{
+.tp-main-container, .pp-main-container, .sp-main-container{
     background-color:#2f2f2f;
     border-radius: 15px;
     height: 65vh;
