@@ -170,6 +170,11 @@ html, body{
     grid-area: domDivider
 }
 
+.title-checked{
+    text-decoration: line-through;
+    text-decoration-color: #161616;
+    text-decoration-thickness:3px;
+}
 
 
 

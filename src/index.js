@@ -212,19 +212,53 @@ document.addEventListener('click',(e)=>{
 
 //run functions to toggle the checkmark on a specific todo
 document.addEventListener('click',(e)=>{
-    const target=e.target
+    const target=e.target;
     if(target.classList.contains('checkbox-button')){
+
         let firstUpperContainer=target.parentNode;
         let currentIdentifier=firstUpperContainer.parentNode.id;
         let thisTodo;
         allTodos.allTodos.forEach(todo=>{
             if(todo.identifier==currentIdentifier){
                 thisTodo=todo;
+                todoManager.toggleCheck(todo);
+                console.log(thisTodo);
             }
         });
-        todoManager.toggleCheck(thisTodo);
-        console.log(thisTodo);
+
+
+        //toggle all instances of this todo in other projects (if applicable)
+        if(thisTodo.projectName!==''){
+            let thisProject=allProjects.find(project=>project.title===thisTodo.projectName);
+            /*
+            allProjects.forEach(project=>{
+                if(project.title==thisTodo.projectName){
+                    thisProject=project;
+                }*/
+
+                thisProject.allTodos.forEach(todo=>{
+                    if(thisTodo.identifier==todo.identifier){
+                        todoManager.toggleCheck(todo);
+                    }
+                });
+
+
+            if(todoManager.getCurrentProject()==thisProject.identifier){
+                mainContainer.innerHTML="";
+                pageManager.createSpecificProjectPageMain(thisProject,mainContainer);
+            }
+
+        }
+
+
+        if(todoManager.getCurrentProject()=='tasks'){
+            mainContainer.innerHTML="";
+            mainContainer.appendChild(pageManager.createTasksMainContainer(allTodos));
+        }
+
+
 
 
     }
+    return mainContainer;
 });

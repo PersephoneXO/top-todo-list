@@ -108,7 +108,8 @@ export const domManager=(function (){
         todoCheckBox.setAttribute('type','checkbox');
         todoCheckBox.setAttribute('name','checkbox');
         if(thisTodo.checkmark==true){
-
+            todoCheckBox.checked=true;
+            leftSide.querySelector('.dom-todo-title').classList.add('title-checked');
         }
         rightSide.appendChild(todoCheckBox);
 

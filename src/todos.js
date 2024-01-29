@@ -46,7 +46,14 @@ export const todoManager=(function (){
 
     //toggle checkmark
     function toggleCheck(todo){
-        todo.checkmark=!todo.checkmark;
+        switch(todo.checkmark){
+            case true:
+                todo.checkmark=false;
+                break;
+            case false:
+                todo.checkmark=true;
+                break;
+        }
         return todo;
     };
 
