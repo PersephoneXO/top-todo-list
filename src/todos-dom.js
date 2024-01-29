@@ -104,9 +104,12 @@ export const domManager=(function (){
         viewTodoButton.textContent='Details';
         todoDiv.appendChild(viewTodoButton);
 
-        let todoCheckBox=document.createElement('input');
+        let todoCheckBox=createDom('input','checkbox-button');
         todoCheckBox.setAttribute('type','checkbox');
         todoCheckBox.setAttribute('name','checkbox');
+        if(thisTodo.checkmark==true){
+
+        }
         rightSide.appendChild(todoCheckBox);
 
         let todoCheckmark=createDom('span','checkmark');

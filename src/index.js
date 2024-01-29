@@ -209,3 +209,22 @@ document.addEventListener('click',(e)=>{
 
     }
 });
+
+//run functions to toggle the checkmark on a specific todo
+document.addEventListener('click',(e)=>{
+    const target=e.target
+    if(target.classList.contains('checkbox-button')){
+        let firstUpperContainer=target.parentNode;
+        let currentIdentifier=firstUpperContainer.parentNode.id;
+        let thisTodo;
+        allTodos.allTodos.forEach(todo=>{
+            if(todo.identifier==currentIdentifier){
+                thisTodo=todo;
+            }
+        });
+        todoManager.toggleCheck(thisTodo);
+        console.log(thisTodo);
+
+
+    }
+});
