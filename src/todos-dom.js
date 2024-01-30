@@ -1,8 +1,25 @@
-//function to create div
+//function to create dom elements
 function createDom(type,className){
     let created=document.createElement(type);
     created.classList.add(className);
     return created;
+}
+//function to create form labels
+function createLabel(forName,text){
+    let label=document.createElement('label');
+    label.setAttribute('for',forName);
+    label.textContent=text;
+    return label;
+}
+//function to create form inputs
+function createFormInput(type,name,id,value){
+    let input=document.createElement('input');
+    input.setAttribute('type',type);
+    input.setAttribute('name',name);
+    input.id=id;
+    input.setAttribute('value',value);
+    input.required=true;
+    return input;
 }
 
 export const domManager=(function (){
@@ -125,10 +142,94 @@ export const domManager=(function (){
         return todoDiv;
     }
 
+    function editTodoDetails(thisTodo){
+        let dialog=createDom('dialog','edit-task-dialog');
+        let inputContainer=createDom('div','input-container');
+        let form=document.createElement('form');
+        form.setAttribute('method','post');
+        form.id='edit-form';
+        //cancel edit button
+        let cancelButton=createDom('button','cancel-button');
+        cancelButton.setAttribute('formmethod','dialog');
+        cancelButton.id='cancel-edit-button';
+        cancelButton.formnovalidate=true;
+        cancelButton.textContent='x';
+        form.appendChild(cancelButton);
+        //title edit
+        let titleDiv=createDom('div','edit-title-input');
+        titleDiv.appendChild(createLabel('edit-title','Task Name*: '));
+        titleDiv.appendChild(createFormInput('text','task-title','task-title',thisTodo.title));
+        form.appendChild(titleDiv);
+        //description edit
+        let descriptionDiv=createDom('div','edit-description-input');
+        descriptionDiv.appendChild(createLabel('edit-description','Task Description*: '));
+        descriptionDiv.appendChild(createFormInput('text','task-description','task-description',thisTodo.description));
+        form.appendChild(descriptionDiv);
+        //deadline edit
+        let deadlineDiv=createDom('div','edit-deadline-input');
+        deadlineDiv.appendChild(createLabel('edit-deadline','Deadline*: '));
+        deadlineDiv.appendChild(createFormInput('date','deadline','deadline',thisTodo.deadline));
+        form.appendChild(deadlineDiv);
+        //priority edit
+        let priorityContainer=createDom('div','edit priority-input');
+        let containerTitle=document.createElement('p');
+        containerTitle.textContent='Task Priority: ';
+        priorityContainer.appendChild(containerTitle);
+        //high priority
+        let highContainer=createDom('div','high-container');
+        highContainer.appendChild(createLabel('high','High'));
+        let highInput=createFormInput('radio','priority','high','high');
+        if(thisTodo.priority=='high'){
+            highInput.checked=true;
+        }
+        highContainer.appendChild(highInput);
+        priorityContainer.appendChild(highContainer);
+        //medium priority
+        let mediumContainer=createDom('div','medium-container');
+        mediumContainer.appendChild(createLabel('medium','Medium'));
+        let mediumInput=createFormInput('radio','priority','medium','medium');
+        if(thisTodo.priority=='medium'){
+            mediumInput.checked=true;
+        }
+        mediumContainer.appendChild(mediumInput);
+        priorityContainer.appendChild(mediumContainer);
+        //low priority
+        let lowContainer=createDom('div','low-container');
+        lowContainer.appendChild(createLabel('low','Low'));
+        let lowInput=createFormInput('radio','priority','low','low');
+        if(thisTodo.priority=='low'){
+            lowInput.checked=true;
+        }
+        lowContainer.appendChild(lowInput);
+        priorityContainer.appendChild(lowContainer);
+        form.appendChild(priorityContainer);
+        //delete task button
+        let deleteButton=createDom('button','delete-button');
+        deleteButton.setAttribute('type','submit');
+        deleteButton.setAttribute('value','delete');
+        deleteButton.setAttribute('formmethod','post');
+        deleteButton.id='delete-todo-button';
+        deleteButton.textContent='Delete Task?';
+        form.appendChild(deleteButton);
+        //apply changes button
+        let applyChangesButton=createDom('button','apply-changes-button');
+        applyChangesButton.setAttribute('type','submit');
+        applyChangesButton.setAttribute('value','apply-changes');
+        applyChangesButton.setAttribute('formmethod','post');
+        applyChangesButton.id='apply-changes-task';
+        applyChangesButton.textContent='Apply Changes'
+        form.appendChild(applyChangesButton);
+        //
+        inputContainer.appendChild(form);
+        dialog.appendChild(inputContainer);
+        return dialog;
+    }
+
     return{
         addActiveClass,
         populateExistingProjectsChoice,
         projectDomElement,
-        todoDomElement
+        todoDomElement,
+        editTodoDetails
     };
 })();
