@@ -26,7 +26,8 @@ const createProjectDialog=document.querySelector('#create-project-dialog');
 const projectForm=document.querySelector('#project-form');
 const cancelProjectDialog=document.querySelector('#cancel-create-project');
 const submitProjectDialog=document.querySelector('#submit-button-project');
-
+//edit task dialog container
+const editTaskContainer=document.querySelector('.edit-task-container');
 
 
 
@@ -222,7 +223,7 @@ mainContainer.addEventListener('click',(e)=>{
             if(todo.identifier==currentIdentifier){
                 thisTodo=todo;
                 todoManager.toggleCheck(todo);
-                console.log(thisTodo);
+                //console.log(thisTodo);
             }
         });
 
@@ -251,3 +252,17 @@ mainContainer.addEventListener('click',(e)=>{
 });
 
 //run functions to allow user to edit a specific todo on "details" button click
+document.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('view-todo-button')){
+        let currentIdentifier=e.target.parentNode.id;
+        let thisTodo;
+        allTodos.allTodos.forEach(todo=>{
+            if(todo.identifier==currentIdentifier){
+                thisTodo=todo;
+            }
+        });
+        editTaskContainer.appendChild(domManager.editTodoDetails(thisTodo));
+        let editTodoDialog=document.querySelector('.edit-task-dialog');
+        editTodoDialog.showModal();
+    }
+});

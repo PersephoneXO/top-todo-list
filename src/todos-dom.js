@@ -158,20 +158,22 @@ export const domManager=(function (){
         //title edit
         let titleDiv=createDom('div','edit-title-input');
         titleDiv.appendChild(createLabel('edit-title','Task Name*: '));
-        titleDiv.appendChild(createFormInput('text','task-title','task-title',thisTodo.title));
+        titleDiv.appendChild(createFormInput('text','task-title','edit-title',thisTodo.title));
         form.appendChild(titleDiv);
         //description edit
         let descriptionDiv=createDom('div','edit-description-input');
-        descriptionDiv.appendChild(createLabel('edit-description','Task Description*: '));
-        descriptionDiv.appendChild(createFormInput('text','task-description','task-description',thisTodo.description));
+        descriptionDiv.appendChild(createLabel('edit-description','Task Description: '));
+        let editDescription=createFormInput('text','task-description','edit-description',thisTodo.description);
+        editDescription.required=false;
+        descriptionDiv.appendChild(editDescription);
         form.appendChild(descriptionDiv);
         //deadline edit
         let deadlineDiv=createDom('div','edit-deadline-input');
         deadlineDiv.appendChild(createLabel('edit-deadline','Deadline*: '));
-        deadlineDiv.appendChild(createFormInput('date','deadline','deadline',thisTodo.deadline));
+        deadlineDiv.appendChild(createFormInput('date','deadline','edit-deadline',thisTodo.deadline));
         form.appendChild(deadlineDiv);
         //priority edit
-        let priorityContainer=createDom('div','edit priority-input');
+        let priorityContainer=createDom('div','edit-priority-input');
         let containerTitle=document.createElement('p');
         containerTitle.textContent='Task Priority: ';
         priorityContainer.appendChild(containerTitle);
