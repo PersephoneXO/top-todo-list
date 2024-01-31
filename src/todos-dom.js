@@ -143,6 +143,8 @@ export const domManager=(function (){
     }
 
     function editTodoDialogDetails(thisTodo,editDialog){
+        //add the identifier as the id of the dialog
+        editDialog.id=thisTodo.identifier;
         //getting input elements by their IDs
         let titleInput=editDialog.querySelector('#edit-title');
         let descriptionInput=editDialog.querySelector('#edit-description');

@@ -28,6 +28,7 @@ const cancelProjectDialog=document.querySelector('#cancel-create-project');
 const submitProjectDialog=document.querySelector('#submit-button-project');
 //edit task dialog DOM elements
 const editTaskDialog=document.querySelector('.edit-task-dialog');
+const editForm=document.querySelector('#edit-form')
 const cancelEditButton=document.querySelector('#cancel-edit-button');
 const deleteTaskButton=document.querySelector('#delete-todo-button');
 const applyChangesButton=document.querySelector('#apply-changes-button');
@@ -120,7 +121,7 @@ submitTaskDialog.addEventListener('click',(e)=>{
     let getSelectedProject=document.querySelector('#existing-projects-list');
     let todoProject=getSelectedProject.options[getSelectedProject.selectedIndex].text;
     if(todoName.length<1||todoPriorityTest===null){
-        alert('Please fill out all fields');
+        alert('Please fill out all required fields');
     }
     else{
         let todoPriority=document.querySelector('input[name="priority"]:checked').value;
@@ -269,35 +270,42 @@ document.addEventListener('click',(e)=>{
     }
 });
 
-/*
-//run functions to allow user to edit a specific todo on "details" button click
-document.addEventListener('click',(e)=>{
-    if(e.target.classList.contains('view-todo-button')){
-        let currentIdentifier=e.target.parentNode.id;
-        let thisTodo;
-        allTodos.allTodos.forEach(todo=>{
-            if(todo.identifier==currentIdentifier){
-                thisTodo=todo;
-            }
-        });
-        editTaskContainer.appendChild(domManager.editTodoDetails(thisTodo));
-        let editTodoDialog=document.querySelector('.edit-task-dialog');
-        editTodoDialog.showModal();
+//run functions to close the edit modal on click
+cancelEditButton.addEventListener('click',(e)=>{
+    editTaskDialog.close();
+    editForm.reset();
+});
+
+//run functions to apply the changes from the edit dialog
+applyChangesButton.addEventListener('click',(e)=>{
+    e.preventDefault();
+    let currentIdentifier=editTaskDialog.id;
+    let thisTodo;
+    allTodos.allTodos.forEach(todo=>{
+        if(todo.identifier==currentIdentifier){
+            thisTodo=todo;
+        }
+    });
+
+    thisTodo.title=document.querySelector('#edit-title').value;
+    thisTodo.description=document.querySelector('#edit-description').value;
+    thisTodo.deadline=document.querySelector('#edit-deadline').value;
+    thisTodo.priority=document.querySelector('input[name="priority"]:checked').value;
+
+    editTaskDialog.close();
+
+    if(todoManager.getCurrentProject()=='tasks'){
+        mainContainer.innerHTML="";
+        mainContainer.appendChild(pageManager.createTasksMainContainer(allTodos));
+
+    }else{
+        if(todoManager.getCurrentProject()!='home'||todoManager.getCurrentProject()!='projects'){
+            let currentIdentifier=todoManager.getCurrentProject();
+            let thisProject=allProjects.find(project=>project.identifier===currentIdentifier);
+            mainContainer.innerHTML="";
+            pageManager.createSpecificProjectPageMain(thisProject,mainContainer);
+
+        }
     }
-});
-
-//run function to close the edit modal on button click
-document.addEventListener('click',(e)=>{
-    const target=e.target.closest('#cancel-edit-button');
-    if(target){
-        let editTodoDialog=document.querySelector('.edit-task-dialog');
-        editTodoDialog.close();
-        editTaskContainer.innerHTML="";
-    }
-});
-
-//run functions to apply the changes made in the edit modal
-document.addEventListener('click',(e)=>{
 
 });
-*/
