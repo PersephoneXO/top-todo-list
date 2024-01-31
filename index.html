@@ -40,9 +40,45 @@
         </main>
     </div>
 
-    <div class="edit-task-container">
+    <!--Edit Task Dialog-->
+    <dialog class="edit-task-dialog">
+        <div class="input-container">
+            <form method="post" id="edit-form">
+                <button formmethod="dialog" id="cancel-edit-button" class="cancel-button" formnovalidate>x</button>
+                <div class="edit-title-input">
+                    <label for="edit-title">Task Name*: </label>
+                    <input type="text" class="single-line-input" name="task-title" id="edit-title" required>
+                </div>
+                <div class="edit-description-input">
+                    <label for="edit-description">Task Description: </label>
+                    <input type="text" class="single-line-input" name="task-description" id="edit-description">
+                </div>
+                <div class="edit-deadline-input">
+                    <label for="edit-deadline">Deadline*: </label>
+                    <input type="date" class="deadline-input" name="deadline" id="edit-deadline">
+                </div>
+                <div class="radio-container">
+                    <p class="radio-label">Task Priority*: </p>
+                    <div class="high-container">
+                        <label for="high">High</label>
+                        <input type="radio" class="priority-choice" name="priority" id="high" value="high">
+                    </div>
+                    <div class="medium-container">
+                        <label for="medium">Medium</label>
+                        <input type="radio" class="priority-choice" name="priority" id="medium" value="medium">
+                    </div>
+                    <div class="low-container">
+                        <label for="low">Low</label>
+                        <input type="radio" class="priority-choice" name="priority" id="low" value="low">
+                    </div>
+                </div>
+                <button class="delete-button" type="submit" value="delete" formmethod="post" id="delete-todo-button">Delete Task?</button>
+                <button class="apply-button" type="submit" value="apply-changes" formmethod="post" id="apply-changes-button">Apply Changes</button>
+            </form>
+        </div>
+    </dialog>
 
-    </div>
+
 
     <!--Create Task Dialog-->
     <dialog id="create-task-dialog">
