@@ -142,6 +142,30 @@ export const domManager=(function (){
         return todoDiv;
     }
 
+    function editTodoDialogDetails(thisTodo,editDialog){
+        //getting input elements by their IDs
+        let titleInput=editDialog.querySelector('#edit-title');
+        let descriptionInput=editDialog.querySelector('#edit-description');
+        let deadlineInput=editDialog.querySelector('#edit-deadline');
+
+        //set values based on thisTodo
+        titleInput.value=thisTodo.title;
+        descriptionInput.value=thisTodo.description || '';
+        deadlineInput.value=thisTodo.deadline;
+
+        //handle priority radio buttons
+        let priorityInputs=editDialog.querySelectorAll('[name="priority"]');
+        for(let input of priorityInputs){
+            if(input.value===thisTodo.priority){
+                input.checked=true;
+            }
+        }
+
+        return editDialog;
+    }
+
+
+    /*
     function editTodoDetails(thisTodo){
         let dialog=createDom('dialog','edit-task-dialog');
         let inputContainer=createDom('div','input-container');
@@ -225,13 +249,13 @@ export const domManager=(function (){
         inputContainer.appendChild(form);
         dialog.appendChild(inputContainer);
         return dialog;
-    }
+    }*/
 
     return{
         addActiveClass,
         populateExistingProjectsChoice,
         projectDomElement,
         todoDomElement,
-        editTodoDetails
+        editTodoDialogDetails
     };
 })();
