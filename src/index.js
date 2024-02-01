@@ -309,3 +309,48 @@ applyChangesButton.addEventListener('click',(e)=>{
     }
 
 });
+
+//run functions to delete a todo on button click
+deleteTaskButton.addEventListener('click',(e)=>{
+    e.preventDefault();
+    let currentIdentifier=editTaskDialog.id;
+
+    //find the index of the todo from the allTodos array
+    let todoIndex=allTodos.allTodos.findIndex(todo=>todo.identifier===currentIdentifier);
+
+    //if not -1, remove the todo from the array
+    if(todoIndex!==-1){
+        let thisTodo=allTodos.allTodos.find(todo=>todo.identifier===currentIdentifier);
+
+        //if the todo is apart of a project, remove it from there too
+        let thisProject=allProjects.find(project=>project.title===thisTodo.projectName);
+        if(thisProject){
+            let projectTodoIndex=thisProject.allTodos.findIndex(todo=>todo.identifier===currentIdentifier);
+            if(projectTodoIndex!==-1){
+                thisProject.allTodos.splice(projectTodoIndex,1);
+            }
+        }
+        allTodos.allTodos.splice(todoIndex,1);
+    }
+
+    //update the ui accordingly
+    if(todoManager.getCurrentProject()=='tasks'){
+        mainContainer.innerHTML="";
+        pageManager.updateNumOfTasks(allTodos);
+        mainContainer.appendChild(pageManager.createTasksMainContainer(allTodos));
+    } else{
+        if(todoManager.getCurrentProject()!='home'||todoManager.getCurrentProject()!='projects'){
+            let currentProjectIdentifier=todoManager.getCurrentProject();
+            let currentProject=allProjects.find(project=>project.identifier===currentProjectIdentifier);
+            mainContainer.innerHTML="";
+            pageManager.updateNumOfTasks(currentProject);
+            pageManager.createSpecificProjectPageMain(currentProject,mainContainer);
+
+        }
+    }
+
+    editTaskDialog.close();
+    console.log(allTodos.allTodos);
+    console.log(allProjects);
+
+});
