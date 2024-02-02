@@ -1,4 +1,4 @@
-//import css file
+//import css file;
 import './styles.css';
 
 //import functions from external files
