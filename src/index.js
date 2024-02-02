@@ -39,7 +39,7 @@ let allProjects=[];
 
 
 //test whether the storage has been previously populated
-if(!localStorage.getItem("alltodos")){
+if(localStorage.getItem("alltodos")&&localStorage.getItem("allprojects")){
     allTodos=JSON.parse(localStorage.getItem("alltodos"));
     allProjects=JSON.parse(localStorage.getItem("allprojects"));
 
