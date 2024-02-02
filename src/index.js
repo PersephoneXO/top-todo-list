@@ -33,11 +33,23 @@ const cancelEditButton=document.querySelector('#cancel-edit-button');
 const deleteTaskButton=document.querySelector('#delete-todo-button');
 const applyChangesButton=document.querySelector('#apply-changes-button');
 
-
-
 //array that holds all projects and initializes the default project that contains every todo created
 let allTodos=todoManager.createProject('All Todos');
 let allProjects=[];
+
+
+//test whether the storage has been previously populated
+if(!localStorage.getItem("alltodos")){
+    allTodos=JSON.parse(localStorage.getItem("alltodos"));
+    allProjects=JSON.parse(localStorage.getItem("allprojects"));
+
+
+}else{
+    //initialize allTodos and allProjects in localStorage
+    localStorage.setItem("alltodos",JSON.stringify(allTodos));
+    localStorage.setItem("allprojects",JSON.stringify(allProjects));
+}
+
 
 
 //run functions to create home page on page load
@@ -91,6 +103,8 @@ submitProjectDialog.addEventListener('click',(e)=>{
                 alert('Please fill out all fields');
             }else{
                 allProjects.push(todoManager.createProject(projectName));
+                //localStorage Implementation
+                localStorage.setItem("allprojects",JSON.stringify(allProjects));
 
                 if(todoManager.getCurrentProject()=='allProjects'){
                     pageManager.updateNumOfProjects(allProjects);
@@ -127,6 +141,8 @@ submitTaskDialog.addEventListener('click',(e)=>{
         let todoPriority=document.querySelector('input[name="priority"]:checked').value;
         let newTodo=todoManager.createTodo(todoName,todoDescription,todoDeadline,todoPriority);
         todoManager.addTodoToGlobal(newTodo,allTodos);
+        //localStorage Implementation
+        localStorage.setItem("alltodos",JSON.stringify(allTodos));
 
         if(todoProject!='No'){
             let currentProject;
@@ -134,6 +150,8 @@ submitTaskDialog.addEventListener('click',(e)=>{
                 if(thisProject.title===todoProject){
                     currentProject=thisProject;
                     todoManager.addTodoToProject(newTodo,thisProject);
+                    //localStorage Implementation
+                    localStorage.setItem("allprojects",JSON.stringify(allProjects));
                 }
             }
             let projectTitle=document.querySelector('.header-title').textContent;
@@ -227,6 +245,10 @@ mainContainer.addEventListener('click',(e)=>{
             if(todo.identifier==currentIdentifier){
                 thisTodo=todo;
                 todoManager.toggleCheck(todo);
+                //localStorage Implementation
+                localStorage.setItem("alltodos",JSON.stringify(allTodos));
+                localStorage.setItem("allprojects",JSON.stringify(allProjects));
+
                 //console.log(thisTodo);
             }
         });
@@ -292,6 +314,11 @@ applyChangesButton.addEventListener('click',(e)=>{
     thisTodo.deadline=document.querySelector('#edit-deadline').value;
     thisTodo.priority=document.querySelector('input[name="priority"]:checked').value;
 
+    //localStorage Implementation
+    localStorage.setItem("alltodos",JSON.stringify(allTodos));
+    localStorage.setItem("allprojects",JSON.stringify(allProjects));
+
+
     editTaskDialog.close();
 
     if(todoManager.getCurrentProject()=='tasks'){
@@ -331,6 +358,9 @@ deleteTaskButton.addEventListener('click',(e)=>{
             }
         }
         allTodos.allTodos.splice(todoIndex,1);
+        //localStorage Implementation
+        localStorage.setItem("alltodos",JSON.stringify(allTodos));
+        localStorage.setItem("allprojects",JSON.stringify(allProjects));
     }
 
     //update the ui accordingly
@@ -350,7 +380,7 @@ deleteTaskButton.addEventListener('click',(e)=>{
     }
 
     editTaskDialog.close();
-    console.log(allTodos.allTodos);
-    console.log(allProjects);
+    //console.log(allTodos.allTodos);
+    //console.log(allProjects);
 
 });
